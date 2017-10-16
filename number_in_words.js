@@ -40,6 +40,9 @@ function numberToWords(number) {
 			if (numStr[0] !== "0" & numStr.length !==4){
 				result = result + " "+ convertAngka[numStr[0]]+" "+ convertSatuan[satuanIndex.indexOf(Math.pow(10,numStr.length-4))];
 				numStr = Number(numStr.slice(1));				
+				if (numStr === 0){
+					return result +" ribu"+ numberToWords(numStr);
+				}				
 				return result + numberToWords(numStr);
 			}
 			if (numStr.length === 4){
@@ -55,7 +58,10 @@ function numberToWords(number) {
 			}
 			if (numStr[0] !== "0" & numStr.length !==7){
 				result = result + " "+ convertAngka[numStr[0]]+" "+ convertSatuan[satuanIndex.indexOf(Math.pow(10,numStr.length-7))];
-				numStr = Number(numStr.slice(1));				
+				numStr = Number(numStr.slice(1));
+				if (numStr === 0){
+					return result +" juta"+ numberToWords(numStr);
+				}				
 				return result + numberToWords(numStr);
 			}
 			if (numStr.length === 7){
@@ -72,6 +78,9 @@ function numberToWords(number) {
 			if (numStr[0] !== "0" & numStr.length !==10){
 				result = result + " "+ convertAngka[numStr[0]]+" "+ convertSatuan[satuanIndex.indexOf(Math.pow(10,numStr.length-10))];
 				numStr = Number(numStr.slice(1));				
+				if (numStr === 0){
+					return result +" Milliar"+ numberToWords(numStr);
+				}				
 				return result + numberToWords(numStr);
 			}
 			if (numStr.length === 10){
@@ -84,6 +93,7 @@ function numberToWords(number) {
 }
 // Driver code
 console.log(numberToWords(1000000));
+console.log(numberToWords(10000000000));
 console.log(numberToWords(2));
 console.log(numberToWords(27));
 console.log(numberToWords(102));
