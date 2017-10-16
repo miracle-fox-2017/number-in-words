@@ -5,8 +5,6 @@ function numberToWords(number) {
     simpan = satuan[number];
   } else if (number < 20) {
     simpan = numberToWords(number % 10) + 'belas';
-  } else if (number < 20) {
-    simpan = numberToWords(number % 10) + 'belas';
   } else if (number < 100) {
     var nilai = Math.floor(number / 10);
     simpan = numberToWords(nilai) + ' puluh ' + satuan[number % 10];
