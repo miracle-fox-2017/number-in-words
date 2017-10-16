@@ -3,7 +3,7 @@ function numberToWords(number) {
 
   if (number<=10) {
     return words[number]
-  }else if(number <= 11){
+  } else if(number <= 11){
     return 'sebelas '
   } else if(number <= 19){
     return words[number%10]+ ' belas '
@@ -21,14 +21,14 @@ function numberToWords(number) {
     return numberToWords(Math.floor(number/1000000))+' juta ' +numberToWords(number%1000000)
   } else if(number <= 999999999999){
     return numberToWords(Math.floor(number/1000000000))+' miliar ' + numberToWords(number%1000000000)
-  } else if(number <= 999999999999999){
+  } else if(number <= 999999999999998){
     return numberToWords(Math.floor(number/1000000000000))+' triliun ' + numberToWords(number%1000000000000)
   }
 }
 
 // Driver code
-console.log(numberToWords(999999999999999));
-// console.log(numberToWords(1000000));
+// console.log(numberToWords(999999999999999));
+console.log(numberToWords(1030000));
 
 module.exports = {
   numberToWords: numberToWords
