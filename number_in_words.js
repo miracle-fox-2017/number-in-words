@@ -7,7 +7,7 @@ function numberToWords(number){
     }else if(number.toString().length > 6 && number.toString().length <= 9){
         penyebutUtama="juta";
     }else if(number.toString().length > 3 && number.toString().length <= 6){
-        penyebutUtama="ribu"
+        penyebutUtama="ribu";
     }
     if(number === 0){
         return hasil;
@@ -43,15 +43,19 @@ function numberToWords(number){
         }else if(depanReverse[0].length === 2){
             if(parseInt(depanReverse[0]) > 19){
                 segmen2=based[parseInt(depanReverse[0][0])]+" puluh "+based[parseInt(depanReverse[0][1])];
-            }else{
+            }else if(parseInt(depanReverse[0]) > 10 && parseInt(depanReverse[0]) < 20){
                 segmen2=based[parseInt(depanReverse[0][depanReverse[0].length - 1])]+" belas";
+            }else if(parseInt(depanReverse[0]) > 0 && parseInt(depanReverse[0]) < 11){
+                segmen2=based[parseInt(depanReverse[0].substr(0))];
             }
         }else if(depanReverse[0].length === 1){
             segmen3=based[parseInt(depanReverse[0][0])];
         }
         //return segmen1+segmen2+segmen3+" "+penyebutUtama;
-        if(number.toString().length % 3 === 0){
+        if(number.toString().length % 3 === 0 && number.toString().length > 3){
             return segmen1+segmen2+segmen3+" "+penyebutUtama+" "+numberToWords(parseInt(number.toString().substr(3)));
+        }else if(number.toString().length % 3 === 0 && number.toString().length === 3){
+            return segmen1;
         }else if(number.toString().length % 3 === 2){
             return segmen1+segmen2+segmen3+" "+penyebutUtama+" "+numberToWords(parseInt(number.toString().substr(2)));
         }else if(number.toString().length % 3 === 1){
@@ -61,4 +65,4 @@ function numberToWords(number){
 }
 
 // Driver code
-console.log(numberToWords(1000000));
+console.log(numberToWords(11000100));
