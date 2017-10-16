@@ -1,87 +1,51 @@
 function numberToWords(number) {
-  var strNumber = number.toString();
-  var gantihuruf='';
-  var arrhasil=[];
-  if(strNumber.length === 1){
-    switch (number) {
-      case 1:
-      gantihuruf = 'Satu';
-      break;
-      case 2:
-      gantihuruf = 'Dua';
-      break;
-      case 3:
-      gantihuruf = 'Tiga';
-      break;
-      case 4:
-      gantihuruf = 'Empat';
-      break;
-      case 5:
-      gantihuruf = 'Lima';
-      break;
-      case 6:
-      gantihuruf = 'Enam';
-      break;
-      case 7:
-      gantihuruf = 'Tujuh';
-      break;
-      case 8:
-      gantihuruf = 'Delapan';
-      break;
-      case 9:
-      gantihuruf = 'Sembilan';
-      break;
-    }
-    arrhasil.push(gantihuruf);
+  var words =['','Satu','Dua','Tiga','Empat','Lima','Enam','Tujuh','Delapan','Sembilan']
+   if(number<10){
+     return words[number]
+   }
+   else if(number === 10){
+     return 'Sepuluh'
+   }
+   else if(number === 11){
+     return 'Sebelas'
+   }
+   else if(number >10 && number < 20){
+     return words[number %10]+' Belas '
+   }
+   else if(number < 100){
+     return numberToWords(Math.floor(number/10))+ ' Puluh ' + numberToWords(number%10)
+   }
+   else if(number < 200 ){
+     return 'Seratus '+numberToWords(number%100)
+   }
+   else if(number < 1000){
+     return numberToWords(Math.floor(number/100))+' Ratus '+ numberToWords(number%100)
+   }
+   else if(number < 2000){
+     return 'Seribu '+ numberToWords(number%1000)
+   }
+   else if (number < 20000) {
+     return numberToWords(Math.floor(number/1000))+ ' Ribu '+numberToWords(number%1000)
+ }
+  else if( number <200000){
+    return numberToWords(Math.floor(number/1000))+ ' Ribu '+numberToWords(number%1000)
   }
-  return arrhasil;
-
-  if (strNumber.length === 2 && strNumber[0] ==='1'){
-    strNumber.split('');
-    for ( var i=0;i<strNumber.length;i++){
-      switch (number) {
-        case 1:
-        gantihuruf = 'Satu';
-        break;
-        case 2:
-        gantihuruf = 'Dua';
-        break;
-        case 3:
-        gantihuruf = 'Tiga';
-        break;
-        case 4:
-        gantihuruf = 'Empat';
-        break;
-        case 5:
-        gantihuruf = 'Lima';
-        break;
-        case 6:
-        gantihuruf = 'Enam';
-        break;
-        case 7:
-        gantihuruf = 'Tujuh';
-        break;
-        case 8:
-        gantihuruf = 'Delapan';
-        break;
-        case 9:
-        gantihuruf = 'Sembilan';
-        break;
-      }
-      arrhasil.push(gantihuruf);
-    }
-      return arrhasil
-    }
+  else if( number <2000000){
+    return 'Sejuta '+ numberToWords(number%1000000)
   }
-
-  // } 
-
-
-
-// Driver code
-// console.log(numberToWords(1000000));
-console.log(numberToWords(8));
-console.log(numberToWords(18));
-// module.exports = {
-//   numberToWords: numberToWords
-// }
+}
+ 
+ // Driver code
+ console.log(numberToWords(3));
+ console.log(numberToWords(18));
+ console.log(numberToWords(34));
+ console.log(numberToWords(104));
+ console.log(numberToWords(1054));
+ console.log(numberToWords(10954));
+ console.log(numberToWords(100000));
+ console.log(numberToWords(1000000));
+ console.log(numberToWords(1045600));
+ 
+ // module.exports = {
+ //   numberToWords: numberToWords
+ // }
