@@ -17,7 +17,6 @@ function numberToWords(number) {
     // var angka = Math.floor(number/10)
     return numberToWords(Math.floor(number / 100)) + ' ratus ' + numberToWords(number % 100)
    }
-  // else if (number)
 }
 
 // Driver code
