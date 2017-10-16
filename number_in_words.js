@@ -13,6 +13,14 @@ function numberToWords(number) {
   } else if (number < 1000) {
     var nilai = Math.floor(number / 100);
     simpan = numberToWords(nilai) + ' ratus ' + numberToWords(number % 100);
+  } else if (number < 2000) {
+    simpan = 'seribu' + numberToWords(number%1000);
+  } else if (number < 10000) {
+    simpan = numberToWords(Math.floor(number / 1000)) + ' ribu ' + numberToWords(number % 1000);
+  } else if (number < 10000) {
+    simpan = numberToWords(Math.floor(number / 1000)) + ' ribu ' + numberToWords(number % 1000);
+  } else if (number < 100000) {
+    simpan = numberToWords(Math.floor(number / 10000)) + ' ribu ' + numberToWords(number % 10000);
   }
   return simpan;
 }
@@ -27,6 +35,8 @@ console.log(numberToWords(23));
 console.log(numberToWords(90));
 console.log(numberToWords(110));
 console.log(numberToWords(999));
+console.log(numberToWords(1000));
+console.log(numberToWords(100000));
 // console.log(numberToWords(1000000));
 
 // module.exports = {
