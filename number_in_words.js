@@ -61,11 +61,16 @@ function numberToWords(number) {
     huruf = numberToWords(sisa) + ' Milyar ' + numberToWords(number % 1000000000)
 
   }
+  else if (number >= 1000000000000 && number < 1000000000000000) {
+    sisa = Math.floor(number / 1000000000000)
+    huruf = numberToWords(sisa) + ' Trilyun ' + numberToWords(number % 1000000000000)
+  }
   return huruf;
 }
 
 // Driver code
 console.log(numberToWords(1000000));
+//console.log(numberToWords(898000000000098));
 // console.log(numberToWords(123));
 // console.log(numberToWords(11));
 // console.log(numberToWords(15));
