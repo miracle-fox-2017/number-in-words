@@ -2,8 +2,10 @@ function numberToWords(number) {
   // Your code here
   var angka = ["", 'satu','dua','tiga','empat','lima','enam','tujuh','delapan','sembilan','sepuluh','sebelas'];
 
-
-  if(number <= 11){
+  if(number < 0){
+    return false
+  }
+  else if(number <= 11){
     return angka[number];
   }
   else if(number <= 19 ){
@@ -43,8 +45,11 @@ function numberToWords(number) {
   else if (number <= 999999999999999){
       return numberToWords(Math.floor(number / 10000000000)) + ' triliun ' + numberToWords(number % 10000000000);
   }
+  else{
+    return false
+  }
 }
-console.log(numberToWords(1001001))
+console.log(numberToWords('bads'))
 
 module.exports = {
   numberToWords: numberToWords
