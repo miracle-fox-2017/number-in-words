@@ -2,8 +2,8 @@ function numberToWords(number) {
   // Your code here
 	let numStr = number.toString();
 	let result = '';
-	var tempResult = '';
 	let convertAngka = {
+							"0" : "",
 							"1" : "satu",
 							"2" : "dua",
 							"3" : "tiga",
@@ -15,15 +15,10 @@ function numberToWords(number) {
 							"9" : "sembilan"
 	}
 	let convertSatuan = ["puluh","ratus"];
-	let convertRibuan = ["ribu","juta"];
 	let satuanIndex = [10,100];
-		// if (numStr.length > 4){
-		// 	let newStr = numStr.slice(numStr.length-3 , numStr.length);
-		//     numStr =  numStr.slice(0,numStr.length-3);
-		// }
 		if (numStr.length < 4){
 			while (numStr.length !== 0){
-					if (numStr[0] === "0"){
+					if (numStr[0] === "0" && numStr.length !== 1){
 						numStr = numStr.slice(1);
 					}			
 					if (numStr[0] !== "0" & numStr.length !==1){
@@ -35,12 +30,58 @@ function numberToWords(number) {
 						numStr = numStr.slice(1);
 					}
 			}
-
+			return result;
 		}
-		return result;
-}  
+		if (numStr.length > 3 && numStr.length < 7){
+			if (numStr[0] === "0" && numStr.length !== 4){
+				numStr = Number(numStr.slice(1));
+				return result + numberToWords(numStr);
+			}
+			if (numStr[0] !== "0" & numStr.length !==4){
+				result = result + " "+ convertAngka[numStr[0]]+" "+ convertSatuan[satuanIndex.indexOf(Math.pow(10,numStr.length-4))];
+				numStr = Number(numStr.slice(1));				
+				return result + numberToWords(numStr);
+			}
+			if (numStr.length === 4){
+				result = result + " "+ convertAngka[numStr[0]] + " ribu";
+				numStr = Number(numStr.slice(1));
+				return result + numberToWords(numStr);
+			}			
+		}
+		if (numStr.length > 6 && numStr.length < 10){
+			if (numStr[0] === "0" && numStr.length !== 7){
+				numStr = Number(numStr.slice(1));
+				return result + numberToWords(numStr);
+			}
+			if (numStr[0] !== "0" & numStr.length !==7){
+				result = result + " "+ convertAngka[numStr[0]]+" "+ convertSatuan[satuanIndex.indexOf(Math.pow(10,numStr.length-7))];
+				numStr = Number(numStr.slice(1));				
+				return result + numberToWords(numStr);
+			}
+			if (numStr.length === 7){
+				result = result + " "+ convertAngka[numStr[0]] + " juta";
+				numStr = Number(numStr.slice(1));
+				return result + numberToWords(numStr);
+			}			
+		}
+		if (numStr.length > 9 && numStr.length < 14){
+			if (numStr[0] === "0" && numStr.length !== 10){
+				numStr = Number(numStr.slice(1));
+				return result + numberToWords(numStr);
+			}
+			if (numStr[0] !== "0" & numStr.length !==10){
+				result = result + " "+ convertAngka[numStr[0]]+" "+ convertSatuan[satuanIndex.indexOf(Math.pow(10,numStr.length-10))];
+				numStr = Number(numStr.slice(1));				
+				return result + numberToWords(numStr);
+			}
+			if (numStr.length === 10){
+				result = result + " "+ convertAngka[numStr[0]] + " milliar";
+				numStr = Number(numStr.slice(1));
+				return result + numberToWords(numStr);
+			}			
+		}		
 
-
+}
 // Driver code
 console.log(numberToWords(1000000));
 console.log(numberToWords(2));
